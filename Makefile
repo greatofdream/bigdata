@@ -13,7 +13,7 @@ $(ResultDir)/%RFMKMeans.txt: $(ResultDir)/%RFM.csv
 .PHONY: kmeansResult
 kmeansResult: $(ResultDir)/RFMKMeansKn.csv
 $(ResultDir)/RFMKMeansKn.csv: $(ResultDir)/RFMKMeans.npy
-	python3 src/kmeansGroup.py $^ 3 $(ResultDir)/$(prefixName)RFM.csv $@
+	python3 src/kmeansGroup.py $^ 5 $(ResultDir)/$(prefixName)RFM.csv $@
 
 .PHONY: visualization
 visualization: $(ResultDir)/visualization/$(method).png

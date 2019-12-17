@@ -31,10 +31,11 @@ rfm_kn_describe.to_csv(foutName.replace('.csv', 'Describle.csv'))
 ax = plt.subplot(111, projection = '3d')
 ax.scatter(rfm_kn.iloc[:, 0], rfm_kn.iloc[:, 1], rfm_kn.iloc[:, 2], c = cluster_labels)
 ax.set_xlabel('M')
-ax.set_xlim([0, 20000])
+ax.set_xlim([0, 7000])
 ax.set_ylabel('R')
+ax.set_ylim([0, 50])
 ax.set_zlabel('F')
-ax.set_zlim([0, 5])
+ax.set_zlim([0, 100])
 plt.savefig(rfmlogName.replace('.npy', '.png'))
 # user proportion
 labels = ['cluster0', 'cluster1','cluster2']

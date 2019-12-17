@@ -15,7 +15,9 @@ rfm = pd.read_csv(finName)
 # log to normalize
 rfm_log = rfm[['money', 'recent','frequency']].apply(np.log, axis = 1).round(2)
 print(rfm.shape[0])
-rfm_log_zs = (rfm_log -rfm_log.mean())/rfm_log.std()
+# rfm_log_zs = (rfm_log -rfm_log.mean())/rfm_log.std()
+# warning: not use normalization, the conclusion is come from this dataset
+rfm_log_zs = rfm_log 
 np.save(foutName, rfm_log_zs)
 # use kmeans method to caculate the loss
 ks = range(1, 9)
