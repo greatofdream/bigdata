@@ -12,8 +12,12 @@ else:
     foutName = sys.argv[2]
 
 rfm = pd.read_csv(finName)
+# use more feature; cut the abnormal points
+rfmMore = rfm
+rfmMoreCut = rfmMore.loc[(rfmMore['money']<5000)&(rfmMore['age']>10)]
+rfm = rfmMoreCut
 # log to normalize
-rfm_log = rfm[['money', 'recent','frequency']].apply(np.log, axis = 1).round(2)
+rfm_log = rfm[['money', 'recent','frequency','sex','age']].apply(np.log, axis = 1).round(2)
 print(rfm.shape[0])
 # rfm_log_zs = (rfm_log -rfm_log.mean())/rfm_log.std()
 # warning: not use normalization, the conclusion is come from this dataset
