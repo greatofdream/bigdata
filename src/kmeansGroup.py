@@ -4,7 +4,7 @@ from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import proj3d
 import sys
-
+import src.rfm
 if len(sys.argv)<2:
     rfmlogName = './Result/RFMKMeans.npy'
     clusterNum = 3
@@ -28,6 +28,7 @@ rfm_kn.to_csv(foutName)
 rfm_kn_describe = rfm_kn.groupby('cluster').agg({'money':['mean','count'], 'recent':'mean','frequency':'mean'}).round(2)
 rfm_kn_describe.to_csv(foutName.replace('.csv', 'Describle.csv'))
 # plot the picture
+
 ax = plt.subplot(111, projection = '3d')
 ax.scatter(rfm_kn.iloc[:, 0], rfm_kn.iloc[:, 1], rfm_kn.iloc[:, 2], c = cluster_labels)
 ax.set_xlabel('M')
@@ -37,6 +38,14 @@ ax.set_ylim([0, 50])
 ax.set_zlabel('F')
 ax.set_zlim([0, 100])
 plt.savefig(rfmlogName.replace('.npy', '.png'))
+# plot the pie graph
+resultDir = './Result'
+src.rfm.plotPie(rfm_kn, 'money', 'User', 'count',clusterNum, resultDir)
+src.rfm.plotPie(rfm_kn, 'money', 'Value', 'sum', clusterNum, resultDir)
+src.rfm.plotPie(rfm_kn, 'money', 'Value', 'mean', clusterNum, resultDir)
+src.rfm.plotPie(rfm_kn, 'frequency', 'frequency', 'mean', clusterNum, resultDir)
+src.rfm.plotPie(rfm_kn, 'recent', 'recent', 'mean', clusterNum, resultDir)
+'''
 # user proportion
 labels = ['cluster0', 'cluster1','cluster2']
 sizes = rfm_kn_describe['money']['count'].to_numpy()
@@ -53,3 +62,4 @@ plt.figure()
 plt.pie(valueSizes, explode = valueExplode, labels = labels, autopct='%1.1f%%', shadow = False, startangle = 90)
 plt.title('value proportion ')
 plt.savefig(rfmlogName.replace('.npy', 'Valueproportion.png'))
+'''
