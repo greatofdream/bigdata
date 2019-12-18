@@ -9,7 +9,7 @@ author: Zhang Aiqiang
 ### 进展（随时更新）
 
 + (100%)使用jupyter完成算法和技术实现
-+ (45%)使用Makefile可以运行最初的设计（不包括筛选和其它处理的KMeans算法
++ (90%)使用Makefile可以运行最初的设计（包括筛选,不包括KernelKMeans算法
 
 ### 算法介绍
 
